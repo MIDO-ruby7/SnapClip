@@ -1,11 +1,18 @@
-# React + TypeScript + Vite
+# 使用技術
+React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Vite Plugin
+### [vite-plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
+Reactのコンパイラ。Babel の約20倍速い SWC を使用している
 
-Currently, two official plugins are available:
+### [vite-tsconfig-paths](https://github.com/vitejs/vite-plugin-react-swc)
+TypeScriptのtsconfig.jsonファイルに設定されたパスエイリアスをViteのビルドプロセスでもサポートするためのツール。TypeScriptとViteのパスエイリアスが一致するようになる。(本来、パスエイリアスを設定するには tsconfig.json と vite.config.ts の両方を編集する必要あり)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### [@crxjs/vite-plugin](https://github.com/vitejs/vite-plugin-react-swc)
+Chrome拡張機能開発用プラグイン
+
+## API
+
 
 ## Expanding the ESLint configuration
 
