@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "resolveJsonModule": true, // TSが.jsonファイルをモジュールとして扱えるように追加
+    "esModuleInterop": false, // CommonJSのモジュールをESモジュール形式でインポート
+    "allowSyntheticDefaultImports": true
+  }
+}
