@@ -2,9 +2,10 @@
   "manifest_version": 3,
   "name": "SnapClip.",
   "description": "Base Level Extension",
+  "permissions": ["activeTab", "debugger"],
   "version": "1.0",
   "action": {
     "default_popup": "index.html",
-    "default_icon": "SnapClip2.png"
+    "default_icon": "SnapClip.png"
   }
 }
