@@ -12,21 +12,17 @@ SnapClipは、スクリーンショットを簡単に取得し、編集するた
 
 ## 使用技術
 <div>
-  <img src="https://img.shields.io/badge/-TypeScript-007ACC.svg?logo=typescript&style=flat">
-  <img src="https://img.shields.io/badge/-React-555.svg?logo=react&style=flat">
-  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white">
+  <p><img src="https://img.shields.io/badge/-TypeScript-007ACC.svg?logo=typescript&style=for-the-badge"></p>
+  <p><img src="https://img.shields.io/badge/-React-555.svg?logo=react&style=for-the-badge"></p>
+  <p><img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white"></p>
 </div>
 
 ### Vite Plugin
-### [vite-plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
-Reactのコンパイラ。Babel の約20倍速い SWC を使用している
+- [vite-plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc): Reactのコンパイラ。Babel の約20倍速い SWC を使用している
+- [vite-tsconfig-paths](https://github.com/vitejs/vite-plugin-react-swc): TypeScriptのtsconfig.jsonファイルに設定されたパスエイリアスをViteのビルドプロセスでもサポートするためのツール。TypeScriptとViteのパスエイリアスが一致するようになる
 
-### [vite-tsconfig-paths](https://github.com/vitejs/vite-plugin-react-swc)
-TypeScriptのtsconfig.jsonファイルに設定されたパスエイリアスをViteのビルドプロセスでもサポートするためのツール。TypeScriptとViteのパスエイリアスが一致するようになる。(本来、パスエイリアスを設定するには tsconfig.json と vite.config.ts の両方を編集する必要あり)
-
-### [@crxjs/vite-plugin](https://github.com/vitejs/vite-plugin-react-swc)
-Chrome拡張機能開発用プラグイン
+- [@crxjs/vite-plugin](https://github.com/vitejs/vite-plugin-react-swc): Chrome拡張機能開発用プラグイン
 
 ### Libraly
-- [React](https://ja.react.dev): ユーザーインターフェースを構築するためのライブラリです。
-- [Fabric.js](http://fabricjs.com/): キャプチャしたスクリーンショットの編集に使用します。
+- [React](https://ja.react.dev): ユーザーインターフェースを構築するためのライブラリ
+- [Fabric.js](http://fabricjs.com/): キャプチャしたスクリーンショットの編集に使用
