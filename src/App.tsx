@@ -2,7 +2,7 @@ import Button from './compenents/Button'
 import SupportSection from './compenents/SupportSection'
 import full_screenshot from './assets/full_screenshot.svg'
 import { takeFullScreenshot } from './popup'
-import crop from './assets/crop.svg'
+// import crop from './assets/crop.svg'
 import './App.css'
 
 function App() {
@@ -15,12 +15,12 @@ function App() {
           imgAlt="full_screenshot logo"
           text="Full ScreenShot"
         />
-        <Button
-          onClick={takeFullScreenshot}
+        {/* <Button
+          onClick={takeScreenshot}
           imgSrc={crop}
           imgAlt="crop logo"
           text="Select & Capture"
-        />
+        /> */}
       </div>
       <SupportSection />
     </>

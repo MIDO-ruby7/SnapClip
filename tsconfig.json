@@ -8,6 +8,8 @@
     "lib": ["DOM", "ESNext"],
     "resolveJsonModule": true, // TSが.jsonファイルをモジュールとして扱えるように追加
     "esModuleInterop": false, // CommonJSのモジュールをESモジュール形式でインポート
-    "allowSyntheticDefaultImports": true // CommonJSモジュールに対しても、ESモジュールのデフォルトインポートシンタックスを許可
+    "allowSyntheticDefaultImports": true, // CommonJSモジュールに対しても、ESモジュールのデフォルトインポートシンタックスを許可
+    "moduleResolution": "bundler",
+    "module": "ESNext",
   }
 }
