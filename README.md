@@ -1,57 +1,28 @@
-# 使用技術
-React + TypeScript + Vite
+# SanpClip.
+SnapClipは、スクリーンショットを簡単に取得し、編集するためのChrome拡張機能です。\nこのツールを使えば、画面全体や選択した部分をキャプチャして、素早く編集することができます。
 
-## Vite Plugin
-### [vite-plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)
-Reactのコンパイラ。Babel の約20倍速い SWC を使用している
+## DEMO
 
-### [vite-tsconfig-paths](https://github.com/vitejs/vite-plugin-react-swc)
-TypeScriptのtsconfig.jsonファイルに設定されたパスエイリアスをViteのビルドプロセスでもサポートするためのツール。TypeScriptとViteのパスエイリアスが一致するようになる。(本来、パスエイリアスを設定するには tsconfig.json と vite.config.ts の両方を編集する必要あり)
+## Usage
+1. インストール: Chrome拡張機能としてSnapClipをインストールします。
+2. キャプチャ:
+  - 全画面キャプチャ: 「Full ScreenShot」ボタンをクリックして、画面全体をキャプチャします。
+  - 選択してキャプチャ: (後で実装予定の機能) ドラッグ&ドロップで範囲を選択し、部分的にキャプチャします。
+3. 編集: キャプチャしたスクリーンショットを編集し、必要に応じて保存します。
 
-### [@crxjs/vite-plugin](https://github.com/vitejs/vite-plugin-react-swc)
-Chrome拡張機能開発用プラグイン
+## 使用技術
+<div>
+  <p><img src="https://img.shields.io/badge/-TypeScript-007ACC.svg?logo=typescript&style=for-the-badge"></p>
+  <p><img src="https://img.shields.io/badge/-React-555.svg?logo=react&style=for-the-badge"></p>
+  <p><img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white"></p>
+</div>
 
-## API
+### Vite Plugin
+- [vite-plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc): Reactのコンパイラ。Babel の約20倍速い SWC を使用している
+- [vite-tsconfig-paths](https://github.com/vitejs/vite-plugin-react-swc): TypeScriptのtsconfig.jsonファイルに設定されたパスエイリアスをViteのビルドプロセスでもサポートするためのツール。TypeScriptとViteのパスエイリアスが一致するようになる
 
+- [@crxjs/vite-plugin](https://github.com/vitejs/vite-plugin-react-swc): Chrome拡張機能開発用プラグイン
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Libraly
+- [React](https://ja.react.dev): ユーザーインターフェースを構築するためのライブラリ
+- [Fabric.js](http://fabricjs.com/): キャプチャしたスクリーンショットの編集に使用
