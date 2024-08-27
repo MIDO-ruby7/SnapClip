@@ -7,24 +7,29 @@ let selectionBox: HTMLDivElement | null = null;
 let startPoint: Pick<DOMRect, 'x' | 'y'> | null = null;
 
 chrome.runtime.onMessage.addListener((message) => {
-  if (message.action === 'TAKE_SCREENSHOT') {
-    document.addEventListener('DOMContentLoaded', () => {
+  try {
+    if (message.action === 'TAKE_SCREENSHOT') {
+      console.log("contentScript onMessage:", message.action);
       document.addEventListener('mousedown', handleMouseDown);
-    });
+    }
+  } catch (error) {
+    console.error(error);
   }
 });
 
-
 function handleMouseDown(e: MouseEvent) {
-  if (!startPoint || !selectionBox) return;
+  console.log('Mouse down event detected:', e);
+
   startPoint = { x: e.clientX, y: e.clientY };
   selectionBox = document.createElement('div');
+
   selectionBox.style.position = 'absolute';
   selectionBox.style.border = '2px dashed #000';
   selectionBox.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
   selectionBox.style.left = `${startPoint.x}px`;
   selectionBox.style.top = `${startPoint.y}px`;
   document.body.appendChild(selectionBox);
+  document.body.style.userSelect = '';
 
   document.addEventListener('mousemove', handleMouseMove);
   document.addEventListener('mouseup', handleMouseUp);
@@ -52,15 +57,32 @@ function handleMouseUp() {
   document.removeEventListener('mousemove', handleMouseMove);
   document.removeEventListener('mouseup', handleMouseUp);
 
+  const width = parseInt(selectionBox!.style.width, 10);
+  const height = parseInt(selectionBox!.style.height, 10);
+
+  if (width === 0 || height === 0) {
+    // 選択ボックスが無効な場合は何もしない
+    document.body.removeChild(selectionBox!);
+    selectionBox = null;
+    startPoint = null;
+    return;
+  }
+
   const selection: DOMRect = {
     x: parseInt(selectionBox!.style.left, 10),
     y: parseInt(selectionBox!.style.top, 10),
-    width: parseInt(selectionBox!.style.width, 10),
-    height: parseInt(selectionBox!.style.height, 10),
+    width,
+    height,
   }
 
   // メッセージをポップアップに送信して、選択範囲のスクリーンショットを実行
-  chrome.runtime.sendMessage({ action: 'TAKE_SCREENSHOT', selection });
+  chrome.runtime.sendMessage({ action: 'TAKE_SCREENSHOT', selection }, (response) => {
+    if (chrome.runtime.lastError) {
+      console.error('Error sending message:', chrome.runtime.lastError.message);
+    } else {
+      console.log('contentScripte sendMessage successfully:', response);
+    }
+  });
 
   // Cleanup
   document.body.removeChild(selectionBox!);
