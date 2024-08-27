@@ -3,7 +3,7 @@ import Button from './compenents/Button'
 import SupportSection from './compenents/SupportSection'
 import full_screenshot from './assets/full_screenshot.svg'
 import { takeScreenshot, getCurrentTab } from './popup'
-// import crop from './assets/crop.svg'
+import crop from './assets/crop.svg'
 import './App.css'
 
 function App() {
@@ -13,7 +13,11 @@ function App() {
     takeScreenshot(true, selection);
   }, []);
 
-  // const handleCropScreenshot = useCallback(() => takeScreenshot(false), []);
+  const handleCropScreenshot = useCallback(async () => {
+    const tab = await getCurrentTab();
+    chrome.tabs.sendMessage(tab.id!, { action: 'TAKE_SCREENSHOT' });
+  }, []);
+
   return (
     <>
       <div className="logo-container">
@@ -23,12 +27,12 @@ function App() {
           imgAlt="full_screenshot logo"
           text="Full ScreenShot"
         />
-        {/* <Button
+        <Button
           onClick={handleCropScreenshot}
           imgSrc={crop}
           imgAlt="crop logo"
           text="Select & Capture"
-        /> */}
+        />
       </div>
       <SupportSection />
     </>

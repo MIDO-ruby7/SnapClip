@@ -13,5 +13,12 @@
   "action": {
     "default_popup": "index.html",
     "default_icon": "SnapClip.png"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/contentScript.tsx"],
+      "run_at": "document_end"
+    }
+  ]
 }

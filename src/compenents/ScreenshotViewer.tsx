@@ -1,7 +1,4 @@
 // Responsibility(責務)：スクリーンショット画像を表示すること
-
-import React from 'react';
-
 type ScreenshotViewerProps = {
   screenshotUrl: string;
 }

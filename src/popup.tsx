@@ -1,10 +1,18 @@
-import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import ScreenshotViewer from './compenents/ScreenshotViewer';
+import type { DOMRect } from '@/types/chrome';
+
+// メッセージをリッスンして、スクリーンショットを撮る
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === 'TAKE_SCREENSHOT') {
+    const { x, y, width, height } = message.selection;
+    takeScreenshot(false, { x, y, width, height });
+  }
+});
 
 export const takeScreenshot = async (
   captureBeyondViewport: boolean,
-  selection: { x: number; y: number; width: number; height: number }
+  selection: DOMRect
 ) => {
   const tab = await getCurrentTab();
   const debuggeeId = { tabId: tab.id! };
