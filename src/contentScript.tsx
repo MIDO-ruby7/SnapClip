@@ -6,11 +6,12 @@ import type { DOMRect } from "./types/chrome";
 let selectionBox: HTMLDivElement | null = null;
 let startPoint: Pick<DOMRect, 'x' | 'y'> | null = null;
 
-chrome.runtime.onMessage.addListener((message) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   try {
     if (message.action === 'TAKE_SCREENSHOT') {
       console.log("contentScript onMessage:", message.action);
       document.addEventListener('mousedown', handleMouseDown);
+      sendResponse();
     }
   } catch (error) {
     console.error(error);
@@ -29,7 +30,7 @@ function handleMouseDown(e: MouseEvent) {
   selectionBox.style.left = `${startPoint.x}px`;
   selectionBox.style.top = `${startPoint.y}px`;
   document.body.appendChild(selectionBox);
-  document.body.style.userSelect = '';
+  document.body.style.userSelect = 'none';
 
   document.addEventListener('mousemove', handleMouseMove);
   document.addEventListener('mouseup', handleMouseUp);
@@ -81,11 +82,16 @@ function handleMouseUp() {
       console.error('Error sending message:', chrome.runtime.lastError.message);
     } else {
       console.log('contentScripte sendMessage successfully:', response);
+      cleanup();
     }
   });
+};
 
-  // Cleanup
+function cleanup() {
   document.body.removeChild(selectionBox!);
   selectionBox = null;
   startPoint = null;
-};
+  document.removeEventListener('mousedown', handleMouseDown);
+  document.removeEventListener('mousemove', handleMouseMove);
+  document.removeEventListener('mouseup', handleMouseUp);
+}

@@ -16,6 +16,7 @@ function App() {
   const handleCropScreenshot = useCallback(async () => {
     const tab = await getCurrentTab();
     chrome.tabs.sendMessage(tab.id!, { action: 'TAKE_SCREENSHOT' });
+    window.close();
   }, []);
 
   return (
