@@ -11,5 +11,7 @@
     "allowSyntheticDefaultImports": true, // CommonJSモジュールに対しても、ESモジュールのデフォルトインポートシンタックスを許可
     "moduleResolution": "bundler",
     "module": "ESNext",
-  }
+    "outDir": "dist",
+  },
+  "include": ["src"]
 }
