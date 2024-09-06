@@ -4,8 +4,10 @@
   "description": "Base Level Extension",
   "permissions": [
     "activeTab",
-    "debugger"
+    "debugger",
+    "scripting"
   ],
+  "host_permissions": ["https://snap-clip-canvas.vercel.app/*"],
   "version": "1.0",
   "icons": {
     "128": "128.png"

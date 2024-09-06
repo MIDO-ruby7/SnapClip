@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback} from 'react';
 import Button from './compenents/Button'
 import SupportSection from './compenents/SupportSection'
 import full_screenshot from './assets/full_screenshot.svg'

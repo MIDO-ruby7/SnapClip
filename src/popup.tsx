@@ -15,7 +15,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-
 export const takeScreenshot = async (
   captureBeyondViewport: boolean,
   selection: DOMRect
@@ -42,8 +41,8 @@ export const takeScreenshot = async (
     chrome.debugger.sendCommand(debuggeeId, method, params, (result: { data: string }) => {
       chrome.debugger.detach(debuggeeId);
       if (result && result.data) {
-        const screenshotUrl = `data:image/png;base64,${result.data}`;
-        openScreenshotInNewTab(screenshotUrl);
+        const imageData = `data:image/png;base64,${result.data}`;
+        openCanvasInNewTab(imageData);
       } else {
         // TODO: sanckbarなどでユーザーに表示できるように
         // TODO: HTMLでのキャプチャならいけるかを試す
@@ -55,29 +54,27 @@ export const takeScreenshot = async (
 
 export const getCurrentTab = async () => {
   const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
-  console.log('Current tab:', tabs[0]);
   return tabs[0];
 };
 
-// コンポーネント化してrenderToStaticMarkupで読み込んでいたが、
-// Uncaught ReferenceError: window is not defined になるため直接HTMLを書く
-const openScreenshotInNewTab = (screenshotUrl: string) => {
-  const htmlContent = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Screenshot</title>
-        <style>
-          body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-          img { max-width: 100%; max-height: 100vh; }
-        </style>
-      </head>
-      <body>
-        <img src="${screenshotUrl}" alt="Screenshot"/>
-      </body>
-    </html>
-  `;
+const openCanvasInNewTab = (imageData: string) => {
+  // 新しいタブを開く
+  chrome.tabs.create({ url: 'https://snap-clip-canvas.vercel.app', active: true }, (tab) => {
+    // タブが読み込まれた後にメッセージを送信するためのリスナー
+    chrome.tabs.onUpdated.addListener(function listener(tabId, changeInfo) {
+      if (tabId === tab.id && changeInfo.status === 'complete') {
 
-  // 新しいタブで開く
-  chrome.tabs.create({ url: 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent) });
+        chrome.scripting.executeScript({
+          target: { tabId: tabId },
+          func: (imageData) => {
+            window.postMessage({ imageData }, '*');
+          },
+          args: [imageData],
+        });
+
+        // リスナーを削除してメモリリークを防ぐ
+        chrome.tabs.onUpdated.removeListener(listener);
+      }
+    });
+  });
 };
