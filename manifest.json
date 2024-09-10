@@ -14,7 +14,7 @@
   },
   "action": {
     "default_popup": "index.html",
-    "default_icon": "SnapClip.png"
+    "default_icon": "128.png"
   },
   "content_scripts": [
     {
