@@ -8,13 +8,13 @@
     "scripting"
   ],
   "host_permissions": ["https://snap-clip-canvas.vercel.app/*"],
-  "version": "1.0",
+  "version": "1.1",
   "icons": {
     "128": "128.png"
   },
   "action": {
     "default_popup": "index.html",
-    "default_icon": "SnapClip.png"
+    "default_icon": "128.png"
   },
   "content_scripts": [
     {
