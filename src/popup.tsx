@@ -3,7 +3,6 @@ import type { DOMRect } from '@/types/chrome';
 // メッセージをリッスンして、スクリーンショットを撮る
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'TAKE_SCREENSHOT') {
-    console.log("popup onMessage:", message.action, message.selection);
     const { x, y, width, height } = message.selection;
     takeScreenshot(false, { x, y, width, height }).then(() => {
       sendResponse({ status: 'success' });
@@ -45,7 +44,6 @@ export const takeScreenshot = async (
         openCanvasInNewTab(imageData);
       } else {
         // TODO: sanckbarなどでユーザーに表示できるように
-        // TODO: HTMLでのキャプチャならいけるかを試す
         console.error('このページは取得できないようです');
       }
     });

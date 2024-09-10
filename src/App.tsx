@@ -2,7 +2,7 @@ import { useCallback} from 'react';
 import Button from './compenents/Button'
 import SupportSection from './compenents/SupportSection'
 import full_screenshot from './assets/full_screenshot.svg'
-import { takeScreenshot, getCurrentTab } from './popup'
+import { getCurrentTab } from './popup'
 import crop from './assets/crop.svg'
 import './App.css'
 
@@ -10,7 +10,8 @@ function App() {
   const handleFullScreenshot = useCallback(async () => {
     const tab = await getCurrentTab()
     const selection = { x: 0, y: 0, width: tab.width, height: tab.height };
-    takeScreenshot(true, selection);
+    chrome.tabs.sendMessage(tab.id!, { action: 'TAKE_FULL_SCREENSHOT', selection });
+    window.close();
   }, []);
 
   const handleCropScreenshot = useCallback(async () => {

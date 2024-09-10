@@ -9,9 +9,17 @@ let startPoint: Pick<DOMRect, 'x' | 'y'> | null = null;
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   try {
     if (message.action === 'TAKE_SCREENSHOT') {
-      console.log("contentScript onMessage:", message.action);
       document.addEventListener('mousedown', handleMouseDown);
       sendResponse();
+    } else if (message.action === 'TAKE_FULL_SCREENSHOT') {
+      const selection = message.selection
+      chrome.runtime.sendMessage({ action: 'TAKE_SCREENSHOT', selection }, () => {
+        if (chrome.runtime.lastError) {
+          console.error('Error sending message:', chrome.runtime.lastError.message);
+        } else {
+          cleanup();
+        }
+      });
     }
   } catch (error) {
     console.error(error);
