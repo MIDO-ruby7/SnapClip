@@ -92,6 +92,7 @@ function handleMouseUp() {
       console.log('contentScripte sendMessage successfully:', response);
       cleanup();
     }
+    cleanup();
   });
 };
 
