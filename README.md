@@ -6,6 +6,12 @@ SnapClipは、スクリーンショットを簡単に取得し、編集するた
 
 ## DEMO
 
+[![Image from Gyazo](https://i.gyazo.com/800822fea9bfbd21f17449544f029acb.gif)](https://gyazo.com/800822fea9bfbd21f17449544f029acb)
+
+[![Image from Gyazo](https://i.gyazo.com/7c91d0b2d47ada359e9c78b6e2411e95.gif)](https://gyazo.com/7c91d0b2d47ada359e9c78b6e2411e95)
+
+[![Image from Gyazo](https://i.gyazo.com/92818dda3d4e73c8739c0fead57c8ced.gif)](https://gyazo.com/92818dda3d4e73c8739c0fead57c8ced)
+
 ## Usage
 1. インストール: Chrome拡張機能としてSnapClipをインストールします。
   [インストールはこちら](https://chromewebstore.google.com/detail/snapclip/ellkjgioaalcapghdhfepfddpjjphohp?authuser=0&hl=ja)
@@ -32,7 +38,6 @@ SnapClipは、スクリーンショットを簡単に取得し、編集するた
 - [React](https://ja.react.dev): ユーザーインターフェースを構築するためのライブラリ
 
 編集画面では以下を使用しています。
-- [Fabric.js](http://fabricjs.com/): キャプチャしたスクリーンショットの編集に使用
 - [Fabric.js](http://fabricjs.com/): キャプチャしたスクリーンショットの編集に使用
 - [Material UI (MUI)](https://mui.com/): ユーザーインターフェースコンポーネントを提供するライブラリ。@mui/materialと@mui/icons-materialを利用しています。
 - [React Color](https://casesandberg.github.io/react-color/): カラーピッカーのライブラリ。
